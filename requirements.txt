@@ -1,1 +1,4 @@
 fastapi
+pymongo[tls]
+uvicorn
+requests
