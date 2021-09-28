@@ -3,3 +3,52 @@
 .App {
   text-align: center;
 }
+
+body {
+  background: $pink;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+  /*grid-template-rows: repeat(5, 1fr);*/
+  grid-template-areas:
+      "Intro Intro Ticker Ticker Ticker"
+      "Intro Intro DataDog DataDog Calendar"
+      "Announcements Announcements DataDog DataDog Calendar"
+      "Announcements Announcements DataDog DataDog Calendar"
+      "Empty-Space Empty-Space Empty-Space Empty-Space Calendar";
+  grid-gap: 10px;
+  border: 1px solid black;
+  height: 98vh;
+  grid-auto-flow: dense;
+}
+
+.parent * {
+  border: 1px solid black;
+}
+
+@media screen and (max-width: 800px) { 
+  .parent {
+      display: grid;
+      grid-template-columns: repeat(2,auto);
+      /*grid-template-rows: repeat(5, 1fr);*/
+      grid-template-areas:
+          "Intro Intro"
+          "Intro Intro"
+          "Announcements Announcements" 
+          "Announcements Announcements"
+          "DataDog DataDog"
+          "DataDog DataDog"
+          "Calendar Calendar"
+          "Calendar Calendar"
+          "Ticker Ticker"
+          "Ticker Ticker"
+          "Empty-Space Empty-Space"
+          "Empty-Space Empty-Space";
+      grid-gap: 10px;
+      border: 1px solid black;
+      height: 98vh;
+      grid-auto-flow: dense;
+  }
+}
