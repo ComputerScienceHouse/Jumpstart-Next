@@ -6,6 +6,7 @@ from logging import debug, info, warning, error, critical, exception
 import time
 import requests
 import threading
+from component_util import post_update
 
 conf = json.loads(os.environ['CONFIG'])
 mongo_client = MongoClient(
@@ -44,6 +45,7 @@ class OpenWeatherWrapper:
                 }).json()
                 data['record'] = 'weather'
                 db.info.replace_one({'record': 'weather'}, data, upsert=True)
+                post_update('info.weather')
             except:
                 exception('Failed to fetch weather data: ')
             time.sleep(self.update)
