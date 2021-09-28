@@ -1,4 +1,5 @@
 fastapi
 pymongo[tls]
-uvicorn
+uvicorn[standard]
 requests
+sse-starlette
