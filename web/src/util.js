@@ -14,6 +14,12 @@ var DAYS = [
     "Saturday"
 ];
 
+function UpperCamelCase(str) {
+    return str.split(' ').map(function (v, i, a) {
+        return v[0].toUpperCase() + v.slice(1);
+    }).join(' ');
+}
+
 function timestr(hours, minutes) {
     if (hours === 12) {
         return (
@@ -68,4 +74,4 @@ function datetimeExpanded(date) {
     
 }
 
-export { updateWebSocket, timestr, datetimeExpanded };
+export { updateWebSocket, timestr, datetimeExpanded, UpperCamelCase };
