@@ -1,5 +1,90 @@
 @import "_variables";
+@import "components/info";
 
 .App {
-  text-align: center;
+    text-align: center;
+}
+
+body {
+    background: $body-color;
+}
+body *:not(.wi) {
+    font-family: "Courier New", Courier, monospace;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+#root .app {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /*grid-template-rows: repeat(5, 1fr);*/
+    grid-template-areas:
+        "info info ticker ticker ticker"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "announcements announcements datadog datadog calendar"
+        "announcements announcements datadog datadog calendar"
+        "announcements announcements datadog datadog calendar"
+        "announcements announcements datadog datadog calendar"
+        "announcements announcements datadog datadog calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar";
+    grid-gap: 20px;
+    padding: 20px;
+    height: 100vh;
+    grid-auto-flow: dense;
+    box-sizing: border-box;
+    position: relative;
+
+    .panel {
+        border-radius: 10px;
+        background-color: $pink;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #root .app {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        .panel {
+          display: inline-block;
+          width: 100%;
+          border-radius: 10px;
+          background-color: $pink;
+          position: relative;
+          margin-bottom: 20px;
+          :last-child {
+            margin-bottom: 0px;
+          }
+        }
+        .panel.info {
+          height: 200px;
+        }
+        .panel.announcements {
+          height: 350px;
+        }
+        .panel.calendar {
+            height: fit-content;
+            min-height: 100px;
+        }
+        .panel.datadog {
+            height: calc(100vw - 40px);
+        }
+        .panel.ticker {
+            height: 48px;
+        }
+        .panel.food {
+            height: 100px;
+        }
+    }
 }

@@ -1,0 +1,108 @@
+@import "../_variables";
+
+.panel.info {
+    .logo-time {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: inline-flex;
+        width: calc(100% - 30px);
+        height: 40%;
+
+        .logo {
+            position: relative;
+            margin-right: 15px;
+            height: 100%;
+            width: auto;
+            float: left;
+        }
+        .datetime {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            float: right;
+            color: $white;
+            padding: 0px;
+            .time {
+                position: absolute;
+                top: -25%;
+                left: 50%;
+                transform: translate(-50%, 0);
+                font-size: calc(25.5vw - 80%);
+                padding: 0px;
+            }
+            .date {
+                position: absolute;
+                top: 7.5vh;
+                left: 50%;
+                transform: translate(-50%, 0);
+                font-size: 200%;
+            }
+        }
+    }
+
+    .weather {
+        position: absolute;
+        top: calc(30px + 40%);
+        left: 15px;
+        display: inline-flex;
+        width: calc(100% - 30px);
+        height: calc(60% - 45px);
+        color: $white;
+        box-sizing: border-box;
+
+        .current {
+            position: absolute;
+            display: inline-block;
+            bottom: 0px;
+            left: 0px;
+            height: 100%;
+            width: 45%;
+            border-radius: 10px;
+            background-color: $purple;
+            box-sizing: border-box;
+            .wi {
+                position: absolute;
+                top: 2.5%;
+                left: 2.5%;
+            }
+            .desc {
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                height: fit-content;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .daily {
+            position: absolute;
+            left: calc(45% + 10px);
+            bottom: 0px;
+            display: inline-block;
+            width: calc(55% - 10px);
+            height: 100%;
+            .forecast {
+                position: relative;
+                display: inline-block;
+                width: calc((100% - (2 * 10px)) / 3);
+                height: 100%;
+                margin-right: 10px;
+                border-radius: 10px;
+                background-color: $purple;
+                .wi {
+                    position: absolute;
+                    top: 35%;
+                    left: 50%;
+                    transform: translate(-65%, -50%);
+                    padding: 0px;
+                }
+            }
+            .forecast:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
