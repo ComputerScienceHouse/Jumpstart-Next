@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useLayoutEffect } from "react";
 import "../App.scss";
-import { updateWebSocket, timestr, datetimeExpanded } from "../util";
+import { updateWebSocket, datetimeExpanded, UpperCamelCase } from "../util";
 
 function getWeatherIcon(id, sunrise, sunset, override) {
     if (!override && (Date.now() < sunrise * 1000 || Date.now() > sunset * 1000)) {
@@ -156,16 +156,9 @@ function PanelInfo(props) {
                     current: {
                         temp: Math.floor(d.data.current.temp),
                         feelsLike: Math.floor(d.data.current.feels_like),
-                        desc: d.data.current.weather[0].description
+                        desc: UpperCamelCase(d.data.current.weather[0].description)
                     },
                     daily: [
-                        {
-                            className: getWeatherIcon(d.data.daily[0].weather[0].id, 0, 0, true),
-                            high: Math.floor(d.data.daily[0].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            low: Math.floor(d.data.daily[0].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            month: (new Date(d.data.daily[0].dt * 1000)).getMonth() + 1,
-                            day: (new Date(d.data.daily[0].dt * 1000)).getDate()
-                        },
                         {
                             className: getWeatherIcon(d.data.daily[1].weather[0].id, 0, 0, true),
                             high: Math.floor(d.data.daily[1].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
@@ -179,6 +172,13 @@ function PanelInfo(props) {
                             low: Math.floor(d.data.daily[2].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
                             month: (new Date(d.data.daily[2].dt * 1000)).getMonth() + 1,
                             day: (new Date(d.data.daily[2].dt * 1000)).getDate()
+                        },
+                        {
+                            className: getWeatherIcon(d.data.daily[3].weather[0].id, 0, 0, true),
+                            high: Math.floor(d.data.daily[3].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
+                            low: Math.floor(d.data.daily[3].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
+                            month: (new Date(d.data.daily[3].dt * 1000)).getMonth() + 1,
+                            day: (new Date(d.data.daily[3].dt * 1000)).getDate()
                         }
                     ]
                 });
