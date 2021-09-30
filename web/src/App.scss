@@ -1,55 +1,74 @@
 @import "_variables";
+@import "components/info";
 
 .App {
   text-align: center;
 }
 
 body {
-  background: $pink;
+  background: $body-color;
+  font-family: $font-family-sans-serif;
 }
 
-.root {
+.shadow {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+#root .app {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
   /*grid-template-rows: repeat(5, 1fr);*/
   grid-template-areas:
-      "Intro Intro Ticker Ticker Ticker"
-      "Intro Intro DataDog DataDog Calendar"
-      "Announcements Announcements DataDog DataDog Calendar"
-      "Announcements Announcements DataDog DataDog Calendar"
-      "Empty-Space Empty-Space Empty-Space Empty-Space Calendar";
-  grid-gap: 10px;
-  padding: 5px;
-  border: 1px solid black;
-  height: 95vh;
+      "info info ticker ticker ticker"
+      "info info datadog datadog calendar"
+      "info info datadog datadog calendar"
+      "info info datadog datadog calendar"
+      "info info datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "announcements announcements datadog datadog calendar"
+      "empty empty empty empty calendar"
+      "empty empty empty empty calendar";
+  grid-gap: 20px;
+  padding: 20px;
+  height: 100vh;
   grid-auto-flow: dense;
-}
+  box-sizing: border-box;
+  position: relative;
 
-.root * {
-  border: 1px solid black;
+  .panel {
+    border-radius: 5px;
+    background-color: $pink;
+    position: relative;
+  }
 }
 
 @media screen and (max-width: 800px) { 
-  .root {
+  #root .app {
       display: grid;
       grid-template-columns: repeat(2,auto);
-      /*grid-template-rows: repeat(5, 1fr);*/
       grid-template-areas:
-          "Intro Intro"
-          "Intro Intro"
-          "Announcements Announcements" 
-          "Announcements Announcements"
-          "DataDog DataDog"
-          "DataDog DataDog"
-          "Calendar Calendar"
-          "Calendar Calendar"
-          "Ticker Ticker"
-          "Ticker Ticker"
-          "Empty-Space Empty-Space"
-          "Empty-Space Empty-Space";
+          "info info"
+          "info info"
+          "announcements announcements" 
+          "announcements announcements"
+          "datadog datadog"
+          "datadog datadog"
+          "datadog datadog"
+          "calendar calendar"
+          "calendar calendar"
+          "calendar calendar"
+          "ticker ticker";
+          /*"empty empty"
+          "empty empty";*/
       grid-gap: 10px;
       border: 1px solid black;
-      height: 98vh;
+      height: 100vh;
       grid-auto-flow: dense;
   }
 }
