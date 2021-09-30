@@ -7,6 +7,7 @@ import asyncio
 import json
 import logging
 from typing import List
+from logging import debug, info, warning, error, critical, exception
 
 with open(os.path.join('config', 'config.json'), 'r') as f:
     CONFIG = json.load(f)
@@ -55,7 +56,10 @@ async def event_socket(ws: WebSocket):
                         if len(processed_ids) > 15:
                             del processed_ids[0]
                         del m['_id']
-                        await ws.send_json(m)
+                        try:
+                            await ws.send_json(m)
+                        except:
+                            warning('Unexpected WS disconnect.')
             await asyncio.sleep(CONFIG['event_stream_wait'])
     except WebSocketDisconnect:
         await ws.close()
