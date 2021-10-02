@@ -230,7 +230,7 @@ function PanelInfo(props) {
                     </text>
                     <text
                         x="50%"
-                        y="9.2"
+                        y="10"
                         fontSize="2"
                         textAnchor="middle"
                         fill="white"
@@ -241,11 +241,11 @@ function PanelInfo(props) {
             </div>
             <div className="weather">
                 <svg viewBox="0 0 10 10" className="current shadow">
-                    <foreignObject x="-1" y="0" width="12" height="10" fontSize="5">
+                    <foreignObject x="0" y="1" width="12" height="10" fontSize="4">
                         <i className={weatherDataSet.className}></i>
                     </foreignObject>
                     <text
-                        x="80%"
+                        x="90%"
                         y="3"
                         fontSize="1.75"
                         textAnchor="middle"
@@ -254,7 +254,7 @@ function PanelInfo(props) {
                         {weatherDataSet.current.temp+weatherDataSet.units}
                     </text>
                     <text
-                        x="80%"
+                        x="90%"
                         y="4.5"
                         fontSize="1.1"
                         textAnchor="middle"
