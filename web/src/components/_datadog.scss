@@ -1,0 +1,17 @@
+@import "../_variables";
+
+.panel.datadog {
+    .frame {
+        display: inline-block;
+        width: 100%;
+        height: calc(100% - 32px);
+        overflow: hidden;
+    }
+    #DataDogFrame {
+        position: relative;
+        display: inline-block;
+        height: calc(100% - 32px);
+        width: 100%;
+        overflow: hidden;
+    }
+}

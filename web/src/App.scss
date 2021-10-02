@@ -24,6 +24,17 @@ body *:not(.wi) {
     /*grid-template-rows: repeat(5, 1fr);*/
     grid-template-areas:
         "info info ticker ticker ticker"
+        "info info ticker ticker ticker"
+        "info info ticker ticker ticker"
+        "info info ticker ticker ticker"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
+        "info info datadog datadog calendar"
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
@@ -35,7 +46,17 @@ body *:not(.wi) {
         "announcements announcements datadog datadog calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
-        "announcements announcements food food calendar";
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements empty empty calendar"
+        "announcements announcements empty empty calendar"
+        "announcements announcements empty empty calendar"
+        "announcements announcements empty empty calendar"
+        "announcements announcements empty empty calendar"
+        "announcements announcements empty empty calendar";
     grid-gap: 20px;
     padding: 20px;
     height: 100vh;
@@ -47,6 +68,7 @@ body *:not(.wi) {
         border-radius: 10px;
         background-color: $pink;
         position: relative;
+        overflow: hidden;
     }
 }
 
@@ -63,6 +85,7 @@ body *:not(.wi) {
           background-color: $pink;
           position: relative;
           margin-bottom: 20px;
+          overflow: hidden;
           :last-child {
             margin-bottom: 0px;
           }
@@ -78,7 +101,7 @@ body *:not(.wi) {
             min-height: 100px;
         }
         .panel.datadog {
-            height: calc(100vw - 40px);
+            height: calc(100vw - 100px);
         }
         .panel.ticker {
             height: 48px;
@@ -86,5 +109,22 @@ body *:not(.wi) {
         .panel.food {
             height: 100px;
         }
+    }
+}
+
+.panel {
+    overflow: hidden;
+}
+.panel .header {
+    position: relative;
+    height: 32px;
+    width: 100%;
+    background-color: $purple;
+    span {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        color: $white;
+        transform: translate(0, -50%);
     }
 }

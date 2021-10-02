@@ -1,6 +1,12 @@
-import React from 'react';
-import '../App.scss';
+import React from "react";
+import "../App.scss";
 
-function PanelHeader(props) {
-    return <div class="header"><span>{props.title}</span></div>;
+export function PanelHeader(props) {
+    return (
+        <div class="header shadow">
+            <span>{props.title}</span>
+        </div>
+    );
 }
+
+export default PanelHeader;
