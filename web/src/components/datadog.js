@@ -19,6 +19,7 @@ export function PanelDataDog() {
                             padding: 0
                         }}
                         id="DataDogFrame"
+                        title="Datadog"
                     ></iframe>
                 </foreignObject>
             </svg>

@@ -1,5 +1,6 @@
 @import "_variables";
 @import "components/info";
+@import "components/calendar";
 
 .App {
     text-align: center;
@@ -119,7 +120,7 @@ body *:not(.wi) {
     position: relative;
     height: 32px;
     width: 100%;
-    background-color: $purple;
+    background-color: $header;
     span {
         position: absolute;
         top: 50%;
