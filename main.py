@@ -1,4 +1,3 @@
-from re import M
 from fastapi import FastAPI, requests, WebSocket, WebSocketDisconnect
 from fastapi import APIRouter, Response, Request
 import time
@@ -28,8 +27,15 @@ if __name__ != '__main__':
         update=CONFIG['components']['info']['weather']['update']
     )
 
+    component_DiningDensityFoodWrapper = OpenFoodWrapper(
+        update=CONFIG['components']['dining-density']['update']
+    )
+
     # Start component threads
     component_infoWeatherWrapper.start()
+
+    component_DiningDensityFoodWrapper.start()
+
 
 app = FastAPI()
 r = APIRouter(
@@ -61,6 +67,8 @@ async def event_socket(ws: WebSocket):
         await ws.close()
         print(ws)
 
-        
+    
+
 app.include_router(r)
 app.include_router(InfoComponentRouter)
+app.include_router(DiningDensityComponentRouter)
