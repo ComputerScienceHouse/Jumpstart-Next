@@ -64,6 +64,7 @@ async def get_weather(r: Response):
     weather_data = db.info.find_one(filter={'record': 'weather'})
     if weather_data:
         del weather_data['_id']
+        weather_data['units'] = conf['components']['info']['weather']['units']
         return {
             'result': 'success',
             'data': weather_data
