@@ -32,6 +32,12 @@ if __name__ != '__main__':
     # Start component threads
     component_infoWeatherWrapper.start()
 
+    component_calendarEventWrapper = CalendarWrapper()
+
+    # Start component threads
+    component_infoWeatherWrapper.start()
+    component_calendarEventWrapper.start()
+
 app = FastAPI()
 r = APIRouter(
     prefix='/api'
@@ -68,3 +74,4 @@ async def event_socket(ws: WebSocket):
         
 app.include_router(r)
 app.include_router(InfoComponentRouter)
+app.include_router(CalendarComponentRouter)
