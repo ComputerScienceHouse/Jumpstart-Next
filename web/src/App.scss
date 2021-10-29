@@ -80,22 +80,22 @@ body *:not(.wi) {
         width: 100vw;
         height: 100vh;
         .panel {
-          display: inline-block;
-          width: 100%;
-          border-radius: 10px;
-          background-color: $pink;
-          position: relative;
-          margin-bottom: 20px;
-          overflow: hidden;
-          :last-child {
-            margin-bottom: 0px;
-          }
+            display: inline-block;
+            width: 100%;
+            border-radius: 10px;
+            background-color: $pink;
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+            :last-child {
+                margin-bottom: 0px;
+            }
         }
         .panel.info {
-          height: 200px;
+            height: 200px;
         }
         .panel.announcements {
-          height: 350px;
+            height: 350px;
         }
         .panel.calendar {
             height: fit-content;

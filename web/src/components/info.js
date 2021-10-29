@@ -1,13 +1,16 @@
 import React from "react";
-import { useEffect, useState, useLayoutEffect } from "react";
+import {useEffect, useState, useLayoutEffect} from "react";
 import "../App.scss";
-import { updateWebSocket, datetimeExpanded, UpperCamelCase } from "../util";
+import {updateWebSocket, datetimeExpanded, UpperCamelCase} from "../util";
 
 function getWeatherIcon(id, sunrise, sunset, override) {
-    if (!override && (Date.now() < sunrise * 1000 || Date.now() > sunset * 1000)) {
-        var time = 'night';
+    if (
+        !override &&
+        (Date.now() < sunrise * 1000 || Date.now() > sunset * 1000)
+    ) {
+        var time = "night";
     } else {
-        var time = 'day';
+        var time = "day";
     }
     var type = {
         200: time + "-storm-showers",
@@ -69,40 +72,33 @@ function getWeatherIcon(id, sunrise, sunset, override) {
     return "wi wi-" + type[id];
 }
 
-function WeatherForecast(props) { // dayObj
+function WeatherForecast(props) {
+    // dayObj
     var p = props.dayObj;
-    return <svg className="forecast shadow" viewBox="0 0 5 10">
-        <text
-            x="50%"
-            y="1.5"
-            fontSize="1.2"
-            textAnchor="middle"
-            fill="white"
-        >
-            {(p.month > 9 ? p.month : '0' + p.month)+'/'+(p.day > 9 ? p.day : '0' + p.day)}
-        </text>
-        <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
-            <i className={p.className}></i>
-        </foreignObject>
-        <text
-            x="50%"
-            y="7.8"
-            fontSize="1"
-            textAnchor="middle"
-            fill="white"
-        >
-            {'HI: '+p.high}
-        </text>
-        <text
-            x="50%"
-            y="9.1"
-            fontSize="1"
-            textAnchor="middle"
-            fill="white"
-        >
-            {'LO: '+p.low}
-        </text>
-    </svg>;
+    return (
+        <svg className="forecast shadow" viewBox="0 0 5 10">
+            <text
+                x="50%"
+                y="1.5"
+                fontSize="1.2"
+                textAnchor="middle"
+                fill="white"
+            >
+                {(p.month > 9 ? p.month : "0" + p.month) +
+                    "/" +
+                    (p.day > 9 ? p.day : "0" + p.day)}
+            </text>
+            <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
+                <i className={p.className}></i>
+            </foreignObject>
+            <text x="50%" y="7.8" fontSize="1" textAnchor="middle" fill="white">
+                {"HI: " + p.high}
+            </text>
+            <text x="50%" y="9.1" fontSize="1" textAnchor="middle" fill="white">
+                {"LO: " + p.low}
+            </text>
+        </svg>
+    );
 }
 
 function PanelInfo(props) {
@@ -115,31 +111,31 @@ function PanelInfo(props) {
         current: {
             temp: 0,
             feelsLike: 0,
-            desc: ''
+            desc: "",
         },
         daily: [
             {
-                className: '',
+                className: "",
                 high: 0,
                 low: 0,
                 month: 0,
-                day: 0
+                day: 0,
             },
             {
-                className: '',
+                className: "",
                 high: 0,
                 low: 0,
                 month: 0,
-                day: 0
+                day: 0,
             },
             {
-                className: '',
+                className: "",
                 high: 0,
                 low: 0,
                 month: 0,
-                day: 0
-            }
-        ]
+                day: 0,
+            },
+        ],
     });
 
     function updateWeather() {
@@ -152,35 +148,84 @@ function PanelInfo(props) {
                         d.data.sunrise,
                         d.data.sunset
                     ),
-                    units: {imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
+                    units: {imperial: "°F", metric: "°C", standard: " K"}[
+                        d.data.units
+                    ],
                     current: {
                         temp: Math.floor(d.data.current.temp),
                         feelsLike: Math.floor(d.data.current.feels_like),
-                        desc: UpperCamelCase(d.data.current.weather[0].description)
+                        desc: UpperCamelCase(
+                            d.data.current.weather[0].description
+                        ),
                     },
                     daily: [
                         {
-                            className: getWeatherIcon(d.data.daily[1].weather[0].id, 0, 0, true),
-                            high: Math.floor(d.data.daily[1].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            low: Math.floor(d.data.daily[1].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            month: (new Date(d.data.daily[1].dt * 1000)).getMonth() + 1,
-                            day: (new Date(d.data.daily[1].dt * 1000)).getDate()
+                            className: getWeatherIcon(
+                                d.data.daily[1].weather[0].id,
+                                0,
+                                0,
+                                true
+                            ),
+                            high:
+                                Math.floor(d.data.daily[1].temp.max) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            low:
+                                Math.floor(d.data.daily[1].temp.min) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            month:
+                                new Date(d.data.daily[1].dt * 1000).getMonth() +
+                                1,
+                            day: new Date(d.data.daily[1].dt * 1000).getDate(),
                         },
                         {
-                            className: getWeatherIcon(d.data.daily[2].weather[0].id, 0, 0, true),
-                            high: Math.floor(d.data.daily[2].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            low: Math.floor(d.data.daily[2].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            month: (new Date(d.data.daily[2].dt * 1000)).getMonth() + 1,
-                            day: (new Date(d.data.daily[2].dt * 1000)).getDate()
+                            className: getWeatherIcon(
+                                d.data.daily[2].weather[0].id,
+                                0,
+                                0,
+                                true
+                            ),
+                            high:
+                                Math.floor(d.data.daily[2].temp.max) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            low:
+                                Math.floor(d.data.daily[2].temp.min) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            month:
+                                new Date(d.data.daily[2].dt * 1000).getMonth() +
+                                1,
+                            day: new Date(d.data.daily[2].dt * 1000).getDate(),
                         },
                         {
-                            className: getWeatherIcon(d.data.daily[3].weather[0].id, 0, 0, true),
-                            high: Math.floor(d.data.daily[3].temp.max)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            low: Math.floor(d.data.daily[3].temp.min)+{imperial: "°F", metric: "°C", standard: " K"}[d.data.units],
-                            month: (new Date(d.data.daily[3].dt * 1000)).getMonth() + 1,
-                            day: (new Date(d.data.daily[3].dt * 1000)).getDate()
-                        }
-                    ]
+                            className: getWeatherIcon(
+                                d.data.daily[3].weather[0].id,
+                                0,
+                                0,
+                                true
+                            ),
+                            high:
+                                Math.floor(d.data.daily[3].temp.max) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            low:
+                                Math.floor(d.data.daily[3].temp.min) +
+                                {imperial: "°F", metric: "°C", standard: " K"}[
+                                    d.data.units
+                                ],
+                            month:
+                                new Date(d.data.daily[3].dt * 1000).getMonth() +
+                                1,
+                            day: new Date(d.data.daily[3].dt * 1000).getDate(),
+                        },
+                    ],
                 });
             });
         });
@@ -215,7 +260,7 @@ function PanelInfo(props) {
         };
     }, []);
     return (
-        <div className="panel info shadow" style={{ gridArea: "info" }}>
+        <div className="panel info shadow" style={{gridArea: "info"}}>
             <div className="logo-time">
                 <img src={logo} alt="CSH Logo" className="logo"></img>
                 <svg viewBox="0 0 56 10" className="datetime">
@@ -241,7 +286,13 @@ function PanelInfo(props) {
             </div>
             <div className="weather">
                 <svg viewBox="0 0 10 10" className="current shadow">
-                    <foreignObject x="0" y="1" width="12" height="10" fontSize="4">
+                    <foreignObject
+                        x="0"
+                        y="1"
+                        width="12"
+                        height="10"
+                        fontSize="4"
+                    >
                         <i className={weatherDataSet.className}></i>
                     </foreignObject>
                     <text
@@ -251,7 +302,7 @@ function PanelInfo(props) {
                         textAnchor="middle"
                         fill="white"
                     >
-                        {weatherDataSet.current.temp+weatherDataSet.units}
+                        {weatherDataSet.current.temp + weatherDataSet.units}
                     </text>
                     <text
                         x="90%"
@@ -260,10 +311,21 @@ function PanelInfo(props) {
                         textAnchor="middle"
                         fill="white"
                     >
-                        [{weatherDataSet.current.feelsLike+weatherDataSet.units}]
+                        [
+                        {weatherDataSet.current.feelsLike +
+                            weatherDataSet.units}
+                        ]
                     </text>
-                    <foreignObject x="-1" y="6" width="12" height="3.5" fontSize="1">
-                        <span className="desc">{weatherDataSet.current.desc}</span>
+                    <foreignObject
+                        x="-1"
+                        y="6"
+                        width="12"
+                        height="3.5"
+                        fontSize="1"
+                    >
+                        <span className="desc">
+                            {weatherDataSet.current.desc}
+                        </span>
                     </foreignObject>
                 </svg>
                 <div className="daily">
