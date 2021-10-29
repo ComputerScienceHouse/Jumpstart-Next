@@ -6,12 +6,12 @@ import {PanelHeader} from "./componentUtil.js";
 
 function Event(props) {
     // event, vHeight, dLength
-    var e = props.event;
-    var edt = datetimeExpanded(new Date(e.start.timestamp * 1000));
+    const event = props.event;
+    const edt = datetimeExpanded(new Date(event.start.timestamp * 1000));
     return (
         <div
             className="event shadow"
-            id={e.id}
+            id={event.id}
             style={{
                 height:
                     64 +
@@ -20,28 +20,28 @@ function Event(props) {
                     "px",
             }}
         >
-            <span className="title">{e.summary}</span>
+            <span className="title">{event.summary}</span>
             <span className="time">
-                {e.ongoing
+                {event.ongoing
                     ? " --- "
-                    : e.startsIn.days > 0
-                    ? e.startsIn.days +
+                    : event.startsIn.days > 0
+                    ? event.startsIn.days +
                       " day" +
-                      (e.startsIn.days > 1 ? "s" : "") +
+                      (event.startsIn.days > 1 ? "s" : "") +
                       " (" +
                       edt.date +
                       ")"
-                    : e.startsIn.hours > 0
-                    ? e.startsIn.hours +
+                    : event.startsIn.hours > 0
+                    ? event.startsIn.hours +
                       " hour" +
-                      (e.startsIn.hours > 1 ? "s" : "") +
+                      (event.startsIn.hours > 1 ? "s" : "") +
                       " (" +
                       edt.time +
                       ")"
-                    : e.startsIn.minutes > 0
-                    ? e.startsIn.minutes +
+                    : event.startsIn.minutes > 0
+                    ? event.startsIn.minutes +
                       " minute" +
-                      (e.startsIn.minutes > 1 ? "s" : "") +
+                      (event.startsIn.minutes > 1 ? "s" : "") +
                       " (" +
                       edt.time +
                       ")"
@@ -54,40 +54,41 @@ function Event(props) {
 function PanelCalendar(props) {
     const [events, setEvents] = useState([]);
 
-    function update_calendar() {
-        fetch("/api/components/calendar/events").then(function (r) {
-            r.json().then(function (d) {
-                var vHeight = Math.floor(window.innerHeight * 0.84232);
-                if (Math.floor(vHeight / 64) < d.data.length) {
-                    var data = d.data.slice(0, Math.floor(vHeight / 64));
-                } else {
-                    var data = d.data;
-                }
-                setEvents(
-                    data.map(function (v) {
-                        return (
-                            <Event
-                                event={v}
-                                vHeight={vHeight}
-                                dLength={data.length}
-                            />
-                        );
-                    })
+    async function updateCalendar() {
+        const {data} = await fetch("/api/components/calendar/events").then(
+            (res) => res.json()
+        );
+        // Thar be magic numbers
+        const vHeight = Math.floor(window.innerHeight * 0.84232);
+        const clippedData =
+            Math.floor(vHeight / 64) < data.length
+                ? data.slice(0, Math.floor(vHeight / 64))
+                : data;
+        setEvents(
+            clippedData.map(function (event) {
+                return (
+                    <Event
+                        event={event}
+                        vHeight={vHeight}
+                        dLength={data.length}
+                        key={event.id}
+                    />
                 );
-            });
-        });
+            })
+        );
     }
     useEffect(function () {
-        updateWebSocket.addEventListener("calendar.events", update_calendar);
+        updateWebSocket.addEventListener("calendar.events", updateCalendar);
         return () =>
             updateWebSocket.removeEventListener(
                 "calendar.events",
-                update_calendar
+                updateCalendar
             );
     });
     useLayoutEffect(function () {
-        update_calendar();
-        var listener = window.addEventListener("resize", update_calendar);
+        updateCalendar();
+        window.addEventListener("resize", updateCalendar);
+        return () => window.removeEventListener("resize", updateCalendar);
     }, []);
     return (
         <div className="panel calendar shadow" style={{gridArea: "calendar"}}>

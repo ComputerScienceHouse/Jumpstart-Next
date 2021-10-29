@@ -1,5 +1,5 @@
 const OFF = 0;
-const WARN = 1;
+// const WARN = 1;
 const ERROR = 2;
 
 module.exports = {
@@ -37,6 +37,7 @@ module.exports = {
         "require-atomic-updates": OFF,
         "react/prop-types": OFF,
         "react/react-in-jsx-scope": OFF,
-        camelcase: WARN,
+        camelcase: ERROR,
+        "no-var": ERROR,
     },
 };

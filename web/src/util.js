@@ -1,10 +1,12 @@
-var updateWebSocket = new WebSocket("ws://" + window.location.host + "/api/ws");
+export const updateWebSocket = new WebSocket(
+    "ws://" + window.location.host + "/api/ws"
+);
 updateWebSocket.addEventListener("message", function (e) {
-    var event = new Event(JSON.parse(e.data).message);
+    const event = new Event(JSON.parse(e.data).message);
     updateWebSocket.dispatchEvent(event);
 });
 
-var DAYS = [
+export const DAYS = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -14,7 +16,7 @@ var DAYS = [
     "Saturday",
 ];
 
-function UpperCamelCase(str) {
+export function UpperCamelCase(str) {
     return str
         .split(" ")
         .map(function (v, i, a) {
@@ -23,7 +25,7 @@ function UpperCamelCase(str) {
         .join(" ");
 }
 
-function timestr(hours, minutes) {
+export function timestr(hours, minutes) {
     if (hours === 12) {
         return (
             hours.toString() +
@@ -61,8 +63,8 @@ function timestr(hours, minutes) {
     }
 }
 
-function datetimeExpanded(date) {
-    var d =
+export function datetimeExpanded(date) {
+    const day =
         DAYS[date.getDay()] +
         " " +
         (date.getMonth() + 1 > 9
@@ -72,7 +74,7 @@ function datetimeExpanded(date) {
         (date.getDate() > 9 ? date.getDate() : "0" + date.getDate()) +
         "/" +
         date.getFullYear();
-    var t =
+    const time =
         (date.getHours() > 12
             ? date.getHours() - 12
             : date.getHours() === 0
@@ -91,9 +93,7 @@ function datetimeExpanded(date) {
             ? "PM"
             : "AM");
     return {
-        date: d,
-        time: t,
+        date: day,
+        time,
     };
 }
-
-export {updateWebSocket, timestr, datetimeExpanded, UpperCamelCase};

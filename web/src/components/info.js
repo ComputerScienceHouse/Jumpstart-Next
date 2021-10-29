@@ -4,15 +4,11 @@ import "../App.scss";
 import {updateWebSocket, datetimeExpanded, UpperCamelCase} from "../util";
 
 function getWeatherIcon(id, sunrise, sunset, override) {
-    if (
-        !override &&
-        (Date.now() < sunrise * 1000 || Date.now() > sunset * 1000)
-    ) {
-        var time = "night";
-    } else {
-        var time = "day";
-    }
-    var type = {
+    const time =
+        !override && (Date.now() < sunrise * 1000 || Date.now() > sunset * 1000)
+            ? "night"
+            : "day";
+    const type = {
         200: time + "-storm-showers",
         201: time + "-thunderstorm",
         202: "thunderstorm",
@@ -74,7 +70,7 @@ function getWeatherIcon(id, sunrise, sunset, override) {
 
 function WeatherForecast(props) {
     // dayObj
-    var p = props.dayObj;
+    const day = props.dayObj;
     return (
         <svg className="forecast shadow" viewBox="0 0 5 10">
             <text
@@ -84,18 +80,18 @@ function WeatherForecast(props) {
                 textAnchor="middle"
                 fill="white"
             >
-                {(p.month > 9 ? p.month : "0" + p.month) +
+                {(day.month > 9 ? day.month : "0" + day.month) +
                     "/" +
-                    (p.day > 9 ? p.day : "0" + p.day)}
+                    (day.day > 9 ? day.day : "0" + day.day)}
             </text>
             <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
-                <i className={p.className}></i>
+                <i className={day.className}></i>
             </foreignObject>
             <text x="50%" y="7.8" fontSize="1" textAnchor="middle" fill="white">
-                {"HI: " + p.high}
+                {"HI: " + day.high}
             </text>
             <text x="50%" y="9.1" fontSize="1" textAnchor="middle" fill="white">
-                {"LO: " + p.low}
+                {"LO: " + day.low}
             </text>
         </svg>
     );
@@ -243,20 +239,21 @@ function PanelInfo(props) {
         updateWeather();
     }, []);
     useLayoutEffect(function () {
-        var time_int = setInterval(function () {
-            var dt = datetimeExpanded(new Date(Date.now()));
+        const timeInterval = setInterval(function () {
+            const dt = datetimeExpanded(new Date(Date.now()));
             setTime(dt.time);
             setDate(dt.date);
         }, 200);
-        var logo_int = setInterval(function () {
+        const logoInterval = setInterval(function () {
+            // Very mature
             if (Math.random() > 0.95) {
                 setLogo("logo2.svg");
                 setTimeout(() => setLogo("logo.svg"), 15000);
             }
         }, 900000);
         return function () {
-            clearInterval(time_int);
-            clearInterval(logo_int);
+            clearInterval(timeInterval);
+            clearInterval(logoInterval);
         };
     }, []);
     return (
