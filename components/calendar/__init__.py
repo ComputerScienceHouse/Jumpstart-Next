@@ -2,10 +2,10 @@ from fastapi import APIRouter, Response
 from starlette.status import *
 import os, json
 from pymongo import MongoClient
-from logging import debug, info, warning, error, critical, exception
+import logging
 import time
 import requests
-import threading
+import multiprocessing
 from component_util import post_update
 import datetime
 
@@ -47,12 +47,16 @@ class CalendarWrapper:
                 db.calendar.replace_one({'record': 'events'}, data, upsert=True)
                 post_update('calendar.events')
             except:
-                exception('Failed to fetch event data: ')
+                logging.warning('Failed to fetch event data.')
             time.sleep(self.update)
     
     def start(self):
-        threading.Thread(name="thread_jumpstart-next_component_calendar_events", target=self.fetchLoop, daemon=True).start()
-        info('Started calendar.events thread')
+        self.thread = multiprocessing.Process(name="thread_jumpstart-next_component_calendar_events", target=self.fetchLoop)
+        self.thread.start()
+        logging.info('Started calendar.events thread')
+    
+    def kill(self):
+        self.thread.terminate()
 
 CalendarComponentRouter = APIRouter(
     prefix='/api/components/calendar', 
@@ -68,5 +72,7 @@ async def get_events(r: Response):
             'data': event_data['events']
         }
     else:
-        r.status_code = HTTP_404_NOT_FOUND
-        return {'result': 'failed: event record not generated'}
+        return {
+            'result': 'success',
+            'data': []
+        }

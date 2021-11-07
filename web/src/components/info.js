@@ -145,6 +145,10 @@ function PanelInfo(props) {
     function updateWeather() {
         fetch("/api/components/info/weather").then(function (r) {
             r.json().then(function (d) {
+                if (!d.data.current) {
+                    console.log('No weather data returned; API failure likely.');
+                    return;
+                }
                 console.log(d.data);
                 setWeatherDataSet({
                     className: getWeatherIcon(

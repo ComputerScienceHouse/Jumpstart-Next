@@ -51,4 +51,4 @@ async def get_message(response: Response):
         return record['message']
     else:
         response.status_code = HTTP_404_NOT_FOUND
-        return {'result': 'failed', 'reason': 'No message posted.'}
+        return {}

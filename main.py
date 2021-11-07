@@ -38,7 +38,12 @@ if __name__ != '__main__':
     component_infoWeatherWrapper.start()
     component_calendarEventWrapper.start()
 
-app = FastAPI()
+async def clean_shutdown():
+    logging.info('Performing clean shutdown.')
+    component_calendarEventWrapper.kill()
+    component_infoWeatherWrapper.kill()
+
+app = FastAPI(on_shutdown=[clean_shutdown])
 r = APIRouter(
     prefix='/api'
 )
@@ -75,3 +80,4 @@ async def event_socket(ws: WebSocket):
 app.include_router(r)
 app.include_router(InfoComponentRouter)
 app.include_router(CalendarComponentRouter)
+app.include_router(AnnouncementComponentRouter)
