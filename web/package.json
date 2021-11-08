@@ -38,6 +38,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^6.0.1"
+    "eslint": "^8.1.0",
+    "eslint-plugin-react": "^7.26.1",
+    "node-sass": "^6.0.1",
+    "prettier": "^2.4.1"
   }
 }

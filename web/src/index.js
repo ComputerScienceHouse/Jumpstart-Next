@@ -11,7 +11,7 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-document.addEventListener('resize', function () {
+document.addEventListener("resize", function () {
     ReactDOM.render(
         <React.StrictMode>
             <App />
