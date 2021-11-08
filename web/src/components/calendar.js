@@ -77,6 +77,7 @@ function PanelCalendar(props) {
             })
         );
     }
+    
     useEffect(function () {
         updateWebSocket.addEventListener("calendar.events", updateCalendar);
         return () =>
@@ -85,11 +86,13 @@ function PanelCalendar(props) {
                 updateCalendar
             );
     });
+
     useLayoutEffect(function () {
         updateCalendar();
         window.addEventListener("resize", updateCalendar);
         return () => window.removeEventListener("resize", updateCalendar);
     }, []);
+
     return (
         <div className="panel calendar shadow" style={{gridArea: "calendar"}}>
             <PanelHeader title="Upcoming Events" />

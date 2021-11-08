@@ -69,8 +69,7 @@ function getWeatherIcon(id, sunrise, sunset, override) {
 }
 
 function WeatherForecast(props) {
-    // dayObj
-    const day = props.dayObj;
+    const day = props.dayObj; // dayObj
     return (
         <svg className="forecast shadow" viewBox="0 0 5 10">
             <text
@@ -226,31 +225,36 @@ function PanelInfo(props) {
             });
         });
     }
+
     function wsListener(e) {
         console.log(e);
         updateWeather();
     }
+
     useEffect(function () {
         updateWebSocket.addEventListener("info.weather", wsListener);
         return () =>
             updateWebSocket.removeEventListener("info.weather", wsListener);
     });
+
     useEffect(function () {
         updateWeather();
     }, []);
+
     useLayoutEffect(function () {
         const timeInterval = setInterval(function () {
             const dt = datetimeExpanded(new Date(Date.now()));
             setTime(dt.time);
             setDate(dt.date);
         }, 200);
+      
         const logoInterval = setInterval(function () {
-            // Very mature
             if (Math.random() > 0.95) {
                 setLogo("logo2.svg");
                 setTimeout(() => setLogo("logo.svg"), 15000);
             }
         }, 900000);
+
         return function () {
             clearInterval(timeInterval);
             clearInterval(logoInterval);

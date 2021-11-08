@@ -35,6 +35,7 @@ export function timestr(hours, minutes) {
             " PM"
         );
     }
+    
     if (hours === 0) {
         return (
             "12" +
@@ -44,6 +45,7 @@ export function timestr(hours, minutes) {
             " AM"
         );
     }
+
     if (hours > 12) {
         return (
             (hours - 12).toString() +
