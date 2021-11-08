@@ -6,9 +6,11 @@ module.exports = function(app) {
     changeOrigin: true,
     ws: true
   });
+
   app.use(
     wsprox
   );
+
   app.use(
     '/api',
     createProxyMiddleware({
