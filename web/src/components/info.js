@@ -71,38 +71,40 @@ function getWeatherIcon(id, sunrise, sunset, override) {
 
 function WeatherForecast(props) { // dayObj
     var p = props.dayObj;
-    return <svg className="forecast shadow" viewBox="0 0 5 10">
-        <text
-            x="50%"
-            y="1.5"
-            fontSize="1.2"
-            textAnchor="middle"
-            fill="white"
-        >
-            {(p.month > 9 ? p.month : '0' + p.month)+'/'+(p.day > 9 ? p.day : '0' + p.day)}
-        </text>
-        <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
-            <i className={p.className}></i>
-        </foreignObject>
-        <text
-            x="50%"
-            y="7.8"
-            fontSize="1"
-            textAnchor="middle"
-            fill="white"
-        >
-            {'HI: '+p.high}
-        </text>
-        <text
-            x="50%"
-            y="9.1"
-            fontSize="1"
-            textAnchor="middle"
-            fill="white"
-        >
-            {'LO: '+p.low}
-        </text>
-    </svg>;
+    return (
+        <svg className="forecast shadow" viewBox="0 0 5 10">
+            <text
+                x="50%"
+                y="1.5"
+                fontSize="1.2"
+                textAnchor="middle"
+                fill="white"
+            >
+                {(p.month > 9 ? p.month : '0' + p.month)+'/'+(p.day > 9 ? p.day : '0' + p.day)}
+            </text>
+            <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
+                <i className={p.className}></i>
+            </foreignObject>
+            <text
+                x="50%"
+                y="7.8"
+                fontSize="1"
+                textAnchor="middle"
+                fill="white"
+            >
+                {'HI: '+p.high}
+            </text>
+            <text
+                x="50%"
+                y="9.1"
+                fontSize="1"
+                textAnchor="middle"
+                fill="white"
+            >
+                {'LO: '+p.low}
+            </text>
+        </svg>
+    );
 }
 
 function PanelInfo(props) {
@@ -185,30 +187,36 @@ function PanelInfo(props) {
             });
         });
     }
+
     function wsListener(e) {
         console.log(e);
         updateWeather();
     }
+
     useEffect(function () {
         updateWebSocket.addEventListener("info.weather", wsListener);
         return () =>
             updateWebSocket.removeEventListener("info.weather", wsListener);
     });
+
     useEffect(function () {
         updateWeather();
     }, []);
+
     useLayoutEffect(function () {
         var time_int = setInterval(function () {
             var dt = datetimeExpanded(new Date(Date.now()));
             setTime(dt.time);
             setDate(dt.date);
         }, 200);
+
         var logo_int = setInterval(function () {
             if (Math.random() > 0.95) {
                 setLogo("logo2.svg");
                 setTimeout(() => setLogo("logo.svg"), 15000);
             }
         }, 900000);
+
         return function () {
             clearInterval(time_int);
             clearInterval(logo_int);
