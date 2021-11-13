@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "../App.scss";
+import "./_announcements.scss";
 import { updateWebSocket } from "../util";
 import { PanelHeader } from "./componentUtil.js";
 import { SlackMessage } from "./SlackRenderer/components/SlackMessage.jsx";

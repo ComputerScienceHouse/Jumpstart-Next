@@ -1,18 +1,6 @@
 @import "_variables";
 @import "components/info";
 @import "components/calendar";
-@import "components/SlackRenderer/styles/SlackMessage";
-@import "components/SlackRenderer/styles/MessageHeader";
-@import "components/SlackRenderer/styles/WrappedValue";
-@import "components/SlackRenderer/styles/blocks/Emoji.scss";
-@import "components/SlackRenderer/styles/blocks/Link.scss";
-@import "components/SlackRenderer/styles/blocks/Mention.scss";
-@import "components/SlackRenderer/styles/blocks/Styling.scss";
-@import "components/SlackRenderer/styles/blocks/Text.scss";
-
-.App {
-    text-align: center;
-}
 
 body {
     background: $body-color;

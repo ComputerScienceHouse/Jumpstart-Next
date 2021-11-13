@@ -1,16 +1,16 @@
-import styles from "../../styles/blocks/Styling.scss";
+import "../../styles/blocks/Styling.scss";
 
 export function getStyles(style) {
   const classNames = [];
   if (style) {
     if (style.bold) {
-      classNames.push(styles.bold);
+      classNames.push("bold");
     }
     if (style.italic) {
-      classNames.push(styles.italic);
+      classNames.push("italic");
     }
     if (style.strike) {
-      classNames.push(styles.strike);
+      classNames.push("strike");
     }
   }
   return classNames;

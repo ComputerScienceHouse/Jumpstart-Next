@@ -6,7 +6,7 @@ export function Mention({style, children, prefix, highlight}) {
   classes.push(styles.mention);
   // The user would be notified by this (e.g. at-channel)
   if (highlight) {
-    classes.push(styles.highlight);
+    classes.push('highlight');
   }
   return (
     <span className={classes.join(" ")}>

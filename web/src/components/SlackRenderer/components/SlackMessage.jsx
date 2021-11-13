@@ -4,11 +4,12 @@ import {MessageHeader} from "./MessageHeader.jsx";
 import {Blocks} from "./Blocks.jsx";
 
 export function SlackMessage({blocks, text, user, ts, context}) {
+  console.log("FUCK FUCK SHIT FUCK SHIT", styles)
   return (
-    <div className={styles.messageContainer}>
+    <div className="messageContainer">
       <Avatar user={user} />
       <MessageHeader user={user} ts={ts} context={context} />
-      <div className={styles.messageContent}>
+      <div className="messageContent">
         <Blocks text={text} elements={blocks} context={context} />
       </div>
     </div>

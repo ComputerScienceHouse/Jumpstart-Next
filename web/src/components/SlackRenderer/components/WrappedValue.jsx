@@ -1,4 +1,4 @@
-import styles from "../styles/WrappedValue.scss";
+import "../styles/WrappedValue.scss";
 import {useState, useEffect} from "react";
 import {wrapPromise} from "../wrapPromise.js";
 
@@ -21,8 +21,8 @@ export function WrappedValue({content}) {
 
   if (result === null) {
     return (
-      <span className={styles.pendingWrapper}>
-        <span className={styles.pending} />
+      <span className="pendingWrapper">
+        <span className="pending" />
       </span>
     );
   } else if (result === undefined) {

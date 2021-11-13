@@ -1,5 +1,5 @@
 import unicodeEmoji from "../../emoji.json";
-import styles from "../../styles/blocks/Emoji.scss";
+import "../../styles/blocks/Emoji.scss";
 
 export function Emoji({name, context}) {
   const workspaceEmoji = context.workspaceEmoji;
@@ -9,11 +9,11 @@ export function Emoji({name, context}) {
     : workspaceEmoji[name];
   if (url) {
     return (
-      <span className={styles.emojiWrapper}>
+      <span className="emojiWrapper">
         <img src={url} alt={`:${name}:`} />
       </span>
     );
   } else {
-    return <span className={styles.emojiFallback}>{`:${name}:`}</span>;
+    return <span className="emojiFallback">{`:${name}:`}</span>;
   }
 }
