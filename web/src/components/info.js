@@ -147,6 +147,10 @@ function PanelInfo(props) {
     function updateWeather() {
         fetch("/api/components/info/weather").then(function (r) {
             r.json().then(function (d) {
+                if (!d.data.current) {
+                    console.log('No weather data returned; API failure likely.');
+                    return;
+                }
                 console.log(d.data);
                 setWeatherDataSet({
                     className: getWeatherIcon(
@@ -225,12 +229,11 @@ function PanelInfo(props) {
     return (
         <div className="panel info shadow" style={{ gridArea: "info" }}>
             <div className="logo-time">
-                <img src={logo} alt="CSH Logo" className="logo"></img>
                 <svg viewBox="0 0 56 10" className="datetime">
                     <text
                         x="50%"
                         y="6"
-                        fontSize="8"
+                        fontSize="7"
                         textAnchor="middle"
                         fill="white"
                     >
@@ -238,7 +241,7 @@ function PanelInfo(props) {
                     </text>
                     <text
                         x="50%"
-                        y="10"
+                        y="9"
                         fontSize="2"
                         textAnchor="middle"
                         fill="white"
@@ -254,7 +257,7 @@ function PanelInfo(props) {
                     </foreignObject>
                     <text
                         x="90%"
-                        y="3"
+                        y="4"
                         fontSize="1.75"
                         textAnchor="middle"
                         fill="white"
@@ -263,7 +266,7 @@ function PanelInfo(props) {
                     </text>
                     <text
                         x="90%"
-                        y="4.5"
+                        y="5.5"
                         fontSize="1.1"
                         textAnchor="middle"
                         fill="white"

@@ -1,0 +1,11 @@
+.emojiWrapper {
+  position: relative;
+  height: auto;
+  width: 22px;
+  display: inline-block;
+
+  img {
+    position: absolute;
+    margin-top: -1em;
+  }
+}

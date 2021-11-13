@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from logging import debug, info, warning, error, critical, exception
 import time
 import requests
-import threading
+import multiprocessing
 from component_util import post_update
 
 conf = json.loads(os.environ['CONFIG'])
@@ -51,8 +51,10 @@ class OpenWeatherWrapper:
             time.sleep(self.update)
     
     def start(self):
-        threading.Thread(name="thread_jumpstart-next_component_info_weather", target=self.fetchLoop, daemon=True).start()
+        self.thread = multiprocessing.Process(name="thread_jumpstart-next_component_info_weather", target=self.fetchLoop)
         info('Started info.weather thread')
+    def kill(self):
+        self.thread.terminate()
 
 InfoComponentRouter = APIRouter(
     prefix='/api/components/info', 
@@ -70,5 +72,7 @@ async def get_weather(r: Response):
             'data': weather_data
         }
     else:
-        r.status_code = HTTP_404_NOT_FOUND
-        return {'result': 'failed: weather record not generated'}
+        return {
+            'result': 'failure',
+            'data': {}
+        }
