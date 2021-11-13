@@ -12,7 +12,7 @@ function App() {
     useEffect(function () {
       return () => updateWebSocket.close();
     });
-    return <div className="app">
+    return <div className="app-root">
       <PanelLogo />
       <PanelInfo />
       <div className="panel ticker shadow" style={{gridArea: 'ticker'}}> </div>

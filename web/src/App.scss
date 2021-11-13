@@ -22,7 +22,7 @@ body *:not(.wi) {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-#root .app {
+#root .app-root {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     /*grid-template-rows: repeat(5, 1fr);*/
@@ -77,7 +77,7 @@ body *:not(.wi) {
 }
 
 @media screen and (max-width: 800px) {
-    #root .app {
+    #root .app-root {
         display: inline-block;
         box-sizing: border-box;
         width: 100vw;
