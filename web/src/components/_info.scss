@@ -1,5 +1,3 @@
-@import "../_variables";
-
 .panel.info {
     .logo-time {
         position: absolute;
@@ -21,7 +19,7 @@
             width: 100%;
             height: 100%;
             float: right;
-            color: $white;
+            color: var(--text);
             padding: 0px;
             .time {
                 position: absolute;
@@ -48,7 +46,7 @@
         display: inline-flex;
         width: calc(100% - 30px);
         height: calc(60% - 45px);
-        color: $white;
+        color: var(--text);
         box-sizing: border-box;
 
         .current {
@@ -59,11 +57,11 @@
             height: 100%;
             width: 45%;
             border-radius: 10px;
-            background-color: $purple;
+            background-color: var(--main-dark);
             box-sizing: border-box;
             .wi {
                 position: absolute;
-                top: 2.5%;
+                top: 10%;
                 left: 2.5%;
             }
             .desc {
@@ -91,7 +89,7 @@
                 height: 100%;
                 margin-right: 10px;
                 border-radius: 10px;
-                background-color: $purple;
+                background-color: var(--main-dark);
                 .wi {
                     position: absolute;
                     top: 35%;

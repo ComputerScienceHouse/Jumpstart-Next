@@ -4,12 +4,15 @@ import { PanelHeader } from "./componentUtil.js";
 
 export function PanelDataDog() {
     return (
-        <div className="panel datadog shadow" style={{ gridArea: "datadog", overflow: 'hidden' }}>
+        <div className="panel datadog shadow" style={{ gridArea: "datadog", overflow: 'hidden', backgroundColor: "#F6F5F6" }}>
             <PanelHeader title="DataDog - Server Management" />
             <svg className="frame" viewBox="0 0 1080 810" style={{
                 height: '100%',
                 overflow: 'hidden',
-                width: 'calc(100% + 30px)'
+                width: '100%',
+                top: "32px",
+                left: "0px",
+                position: "absolute"
             }}>
                 <foreignObject x="0" y="0" width="1080" height="1000">
                     <iframe

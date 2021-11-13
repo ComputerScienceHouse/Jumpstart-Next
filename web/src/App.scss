@@ -1,9 +1,16 @@
-@import "_variables";
 @import "components/info";
 @import "components/calendar";
 
+:root {
+    --background: #444;
+    --main: #e83e8c;
+    --main-dark: #b0197e;
+    --header: #8f1466;
+    --text: #ffffff;
+}
+
 body {
-    background: $body-color;
+    background: var(--background);
 }
 body *:not(.wi) {
     font-family: "Courier New", Courier, monospace;
@@ -20,11 +27,12 @@ body *:not(.wi) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     /*grid-template-rows: repeat(5, 1fr);*/
     grid-template-areas:
-        "info info ticker ticker ticker"
-        "info info ticker ticker ticker"
-        "info info ticker ticker ticker"
-        "info info ticker ticker ticker"
-        "info info datadog datadog calendar"
+        "logo logo ticker ticker ticker"
+        "logo logo ticker ticker ticker"
+        "logo logo ticker ticker ticker"
+        "logo logo ticker ticker ticker"
+        "logo logo datadog datadog calendar"
+        "logo logo datadog datadog calendar"
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
@@ -40,7 +48,6 @@ body *:not(.wi) {
         "announcements announcements datadog datadog calendar"
         "announcements announcements datadog datadog calendar"
         "announcements announcements datadog datadog calendar"
-        "announcements announcements datadog datadog calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
@@ -48,12 +55,12 @@ body *:not(.wi) {
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
-        "announcements announcements empty empty calendar"
-        "announcements announcements empty empty calendar"
-        "announcements announcements empty empty calendar"
-        "announcements announcements empty empty calendar"
-        "announcements announcements empty empty calendar"
-        "announcements announcements empty empty calendar";
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar";
     grid-gap: 20px;
     padding: 20px;
     height: 100vh;
@@ -63,7 +70,7 @@ body *:not(.wi) {
 
     .panel {
         border-radius: 10px;
-        background-color: $pink;
+        background-color: var(--main);
         position: relative;
         overflow: hidden;
     }
@@ -79,7 +86,7 @@ body *:not(.wi) {
           display: inline-block;
           width: 100%;
           border-radius: 10px;
-          background-color: $pink;
+          background-color: var(--main);
           position: relative;
           margin-bottom: 20px;
           overflow: hidden;
@@ -116,12 +123,12 @@ body *:not(.wi) {
     position: relative;
     height: 32px;
     width: 100%;
-    background-color: $header;
+    background-color: var(--header);
     span {
         position: absolute;
         top: 50%;
         left: 10px;
-        color: $white;
+        color: var(--text);
         transform: translate(0, -50%);
     }
 }
