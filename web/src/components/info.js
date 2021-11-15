@@ -77,7 +77,13 @@ function WeatherForecast(props) {
   var p = props.dayObj;
   return (
     <svg className="forecast shadow" viewBox="0 0 5 10">
-      <text x="50%" y="1.5" fontSize="1.2" textAnchor="middle" fill="white">
+      <text
+        x="50%"
+        y="1.5"
+        fontSize="1.2"
+        textAnchor="middle"
+        style={{ fill: "var(--text)" }}
+      >
         {(p.month > 9 ? p.month : "0" + p.month) +
           "/" +
           (p.day > 9 ? p.day : "0" + p.day)}
@@ -85,10 +91,22 @@ function WeatherForecast(props) {
       <foreignObject x="0" y="2" width="5" height="5" fontSize="3">
         <i className={p.className}></i>
       </foreignObject>
-      <text x="50%" y="7.8" fontSize="1" textAnchor="middle" fill="white">
+      <text
+        x="50%"
+        y="7.8"
+        fontSize="1"
+        textAnchor="middle"
+        style={{ fill: "var(--text)" }}
+      >
         {"HI: " + p.high}
       </text>
-      <text x="50%" y="9.1" fontSize="1" textAnchor="middle" fill="white">
+      <text
+        x="50%"
+        y="9.1"
+        fontSize="1"
+        textAnchor="middle"
+        style={{ fill: "var(--text)" }}
+      >
         {"LO: " + p.low}
       </text>
     </svg>
@@ -231,10 +249,22 @@ function PanelInfo(props) {
     <div className="panel info shadow" style={{ gridArea: "info" }}>
       <div className="logo-time">
         <svg viewBox="0 0 56 10" className="datetime">
-          <text x="50%" y="6" fontSize="7" textAnchor="middle" fill="white">
+          <text
+            x="50%"
+            y="6"
+            fontSize="7"
+            textAnchor="middle"
+            style={{ fill: "var(--text)" }}
+          >
             {time}
           </text>
-          <text x="50%" y="9" fontSize="2" textAnchor="middle" fill="white">
+          <text
+            x="50%"
+            y="9"
+            fontSize="2"
+            textAnchor="middle"
+            style={{ fill: "var(--text)" }}
+          >
             {date}
           </text>
         </svg>
@@ -244,10 +274,22 @@ function PanelInfo(props) {
           <foreignObject x="0" y="1" width="12" height="10" fontSize="4">
             <i className={weatherDataSet.className}></i>
           </foreignObject>
-          <text x="90%" y="4" fontSize="1.75" textAnchor="middle" fill="white">
+          <text
+            x="90%"
+            y="4"
+            fontSize="1.75"
+            textAnchor="middle"
+            style={{ fill: "var(--text)" }}
+          >
             {weatherDataSet.current.temp + weatherDataSet.units}
           </text>
-          <text x="90%" y="5.5" fontSize="1.1" textAnchor="middle" fill="white">
+          <text
+            x="90%"
+            y="5.5"
+            fontSize="1.1"
+            textAnchor="middle"
+            style={{ fill: "var(--text)" }}
+          >
             [{weatherDataSet.current.feelsLike + weatherDataSet.units}]
           </text>
           <foreignObject x="-1" y="6" width="12" height="3.5" fontSize="1">

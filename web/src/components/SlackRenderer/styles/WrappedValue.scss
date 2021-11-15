@@ -2,7 +2,7 @@
   display: inline-block;
   width: inherit;
   height: inherit;
-  background: #d1d2d3;
+  background: var(--text);
   animation: pulse ease-in-out 1s infinite alternate;
   border-radius: 1em;
   position: absolute;

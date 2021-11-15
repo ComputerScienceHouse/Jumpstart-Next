@@ -1,5 +1,5 @@
 .messageContainer {
-  background: #1a1d21;
+  background: var(--main);
   font-family: Slack-Lato, appleLogo, sans-serif;
   display: inline-block;
   width: 100%;
@@ -10,6 +10,6 @@
 }
 
 .messageContent {
-  color: #d1d2d3;
+  color: var(--text);
   font-size: 15px;
 }
