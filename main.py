@@ -38,7 +38,6 @@ if __name__ != "__main__":
     )
 
     # Start component threads
-    component_infoWeatherWrapper.start()
 
     component_calendarEventWrapper = CalendarWrapper()
 
@@ -46,14 +45,7 @@ if __name__ != "__main__":
     component_infoWeatherWrapper.start()
     component_calendarEventWrapper.start()
 
-
-async def clean_shutdown():
-    logging.info("Performing clean shutdown.")
-    component_calendarEventWrapper.kill()
-    component_infoWeatherWrapper.kill()
-
-
-app = FastAPI(on_shutdown=[clean_shutdown])
+app = FastAPI()
 r = APIRouter(prefix="/api")
 
 

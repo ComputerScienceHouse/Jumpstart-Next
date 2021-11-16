@@ -9,10 +9,12 @@
   --main-dark: #7c0052;
   --header: #6d0046;
   --text: #ffffff;
+  --binary: #000000;
 }
 
 body {
   background: var(--background);
+  overflow: hidden;
 }
 body *:not(.wi) {
   font-family: "Courier New", Courier, monospace;
@@ -79,6 +81,9 @@ body *:not(.wi) {
 }
 
 @media screen and (max-width: 800px) {
+  body {
+    overflow-y: auto;
+  }
   #root .app-root {
     display: inline-block;
     box-sizing: border-box;
@@ -120,6 +125,7 @@ body *:not(.wi) {
 
 .panel {
   overflow: hidden;
+  z-index: 20;
 }
 .panel .header {
   position: relative;
@@ -132,5 +138,26 @@ body *:not(.wi) {
     left: 10px;
     color: var(--text);
     transform: translate(0, -50%);
+  }
+}
+
+.binary-background {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  display: inline-block;
+  width: calc(100vw - 10px);
+  height: calc(100vh - 10px);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  z-index: -1;
+  opacity: 0.25;
+  color: var(--binary);
+
+  .item {
+    padding: 5px;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
   }
 }

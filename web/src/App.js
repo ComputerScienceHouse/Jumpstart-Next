@@ -6,6 +6,7 @@ import PanelDataDog from "./components/datadog.js";
 import PanelCalendar from "./components/calendar.js";
 import PanelAnnouncements from "./components/announcements";
 import PanelLogo from "./components/logo";
+import BinaryBackground from "./components/binary";
 import { updateWebSocket } from "./util";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <div className="panel food shadow" style={{ gridArea: "food" }}>
         {" "}
       </div>
+      <BinaryBackground />
     </div>
   );
 }

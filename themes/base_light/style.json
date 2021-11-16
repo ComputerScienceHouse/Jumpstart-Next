@@ -3,5 +3,6 @@
     "main": "#b0197e",
     "main-dark": "#7c0052",
     "header": "#6d0046",
-    "text": "#ffffff"
+    "text": "#ffffff",
+    "binary": "#000000"
 }
