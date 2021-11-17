@@ -1,16 +1,20 @@
 @import "components/info";
 @import "components/calendar";
+@import "components/announcements";
+@import "components/logo";
 
 :root {
-    --background: #444;
-    --main: #e83e8c;
-    --main-dark: #b0197e;
-    --header: #8f1466;
+    --background: #efd9e7;
+    --main: #b0197e;
+    --main-dark: #7c0052;
+    --header: #6d0046;
     --text: #ffffff;
+    --binary: #000000;
 }
 
 body {
     background: var(--background);
+    overflow: hidden;
 }
 body *:not(.wi) {
     font-family: "Courier New", Courier, monospace;
@@ -27,10 +31,10 @@ body *:not(.wi) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     /*grid-template-rows: repeat(5, 1fr);*/
     grid-template-areas:
-        "logo logo ticker ticker ticker"
-        "logo logo ticker ticker ticker"
-        "logo logo ticker ticker ticker"
-        "logo logo ticker ticker ticker"
+        "logo logo datadog datadog calendar"
+        "logo logo datadog datadog calendar"
+        "logo logo datadog datadog calendar"
+        "logo logo datadog datadog calendar"
         "logo logo datadog datadog calendar"
         "logo logo datadog datadog calendar"
         "info info datadog datadog calendar"
@@ -44,10 +48,10 @@ body *:not(.wi) {
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
         "info info datadog datadog calendar"
-        "announcements announcements datadog datadog calendar"
-        "announcements announcements datadog datadog calendar"
-        "announcements announcements datadog datadog calendar"
-        "announcements announcements datadog datadog calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
+        "announcements announcements food food calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
         "announcements announcements food food calendar"
@@ -77,28 +81,31 @@ body *:not(.wi) {
 }
 
 @media screen and (max-width: 800px) {
+    body {
+        overflow-y: auto;
+    }
     #root .app-root {
         display: inline-block;
         box-sizing: border-box;
         width: 100vw;
         height: 100vh;
         .panel {
-          display: inline-block;
-          width: 100%;
-          border-radius: 10px;
-          background-color: var(--main);
-          position: relative;
-          margin-bottom: 20px;
-          overflow: hidden;
-          :last-child {
-            margin-bottom: 0px;
-          }
+            display: inline-block;
+            width: 100%;
+            border-radius: 10px;
+            background-color: var(--main);
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+            :last-child {
+                margin-bottom: 0px;
+            }
         }
         .panel.info {
-          height: 200px;
+            height: 200px;
         }
         .panel.announcements {
-          height: 350px;
+            height: 350px;
         }
         .panel.calendar {
             height: fit-content;
@@ -118,6 +125,7 @@ body *:not(.wi) {
 
 .panel {
     overflow: hidden;
+    z-index: 20;
 }
 .panel .header {
     position: relative;
@@ -130,5 +138,26 @@ body *:not(.wi) {
         left: 10px;
         color: var(--text);
         transform: translate(0, -50%);
+    }
+}
+
+.binary-background {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    display: inline-block;
+    width: calc(100vw - 10px);
+    height: calc(100vh - 10px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    z-index: -1;
+    opacity: 0.25;
+    color: var(--binary);
+
+    .item {
+        padding: 5px;
+        font-size: 16px;
+        position: relative;
+        display: inline-block;
     }
 }
