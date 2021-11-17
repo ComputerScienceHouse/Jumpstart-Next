@@ -1,4 +1,4 @@
-import styles from "../styles/SlackMessage.scss";
+import "../styles/SlackMessage.scss";
 import {Avatar} from "./Avatar.jsx";
 import {MessageHeader} from "./MessageHeader.jsx";
 import {Blocks} from "./Blocks.jsx";
