@@ -29,7 +29,7 @@ if __name__ != '__main__':
     )
 
     component_DiningDensityFoodWrapper = OpenFoodWrapper(
-        update=CONFIG['components']['dining-density']['update']
+        update=CONFIG['components']['dining_density']['update']
     )
 
     # Start component threads

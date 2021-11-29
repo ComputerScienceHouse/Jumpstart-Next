@@ -9,8 +9,8 @@ function FoodInfo (props) {
 
     function updateFood() {
         fetch('/api/components/dining-density/food').then(function (r) {r.json().then(function (d) {
-            setFood(d.data);
-            console.log(d.data);
+            setFood(d.data.data);
+            console.log(d.data.data);
         })});
     }
     function wsListener(e) {
@@ -25,41 +25,36 @@ function FoodInfo (props) {
         updateFood();
     }, []);
     return (
-        <div className="dining-density food" style={{gridArea: "food"}}>
+        <div className="panel food shadow" style={{gridArea: "food"}}>
             <div className="food-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Occupancy</th>
-                            <th>% Full</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        <tr>
-                            <td>
-                                {food[0]['name']}
-                            </td>
-                            <td>
-                                {food[0]['count']}
-                            </td>
-                            <td>
-                                {food[0]['pct_full']}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {food[1]['name']}
-                            </td>
-                            <td>
-                                {food[1]['count']}
-                            </td>
-                            <td>
-                                {food[1]['pct_full']}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <svg class="food-box shadow" viewBox="0 0 100% 160">
+                    <foreignObject x="0" y="0" width="100%" height="100%" class = "fit">
+                        <table class = "fit">
+                            <thead>                   
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Occupancy</th>
+                                    <th>% Full</th>
+                                </tr>
+                            </thead>
+                            <tbody class = "vmove">
+                                {food.map(function (v) {
+                                    return (<tr>
+                                        <td>
+                                            {v['name']}
+                                        </td>
+                                        <td>
+                                            {v['count']}
+                                        </td>
+                                        <td>
+                                            {v['pct_full']}
+                                        </td>
+                                    </tr>);
+                                })}
+                            </tbody>
+                        </table>
+                    </foreignObject>
+                </svg>
             </div>
         </div>
     )

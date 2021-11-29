@@ -33,7 +33,7 @@ class OpenFoodWrapper:
                 data = data[:17] # Food places are from 0-16, unfortunate hardcoding...update later
                 for i in range(len(data)): 
                     data[i] = data[i]['properties']
-                    data[i]['pct_full'] = int(100*data[i].count/data[i].max_occ)
+                    data[i]['pct_full'] = int(100*data[i]['count']/data[i]['max_occ'])
                     data[i].pop("mdo_id")                    
                     data[i].pop("open_status")
                     data[i].pop("max_occ")      
@@ -74,7 +74,7 @@ DiningDensityComponentRouter = APIRouter(
 async def get_food(r: Response):
     food_data = db.dining_density.find_one(filter={'record': 'food'})
     if food_data:
-        # del food_data['_id'] # Check what this does
+        del food_data['_id']
         return {
             'result': 'success',
             'data': food_data
