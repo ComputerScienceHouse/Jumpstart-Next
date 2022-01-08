@@ -259,18 +259,22 @@ function PanelInfo(props) {
             });
         });
     }
+
     function wsListener(e) {
         console.log(e);
         updateWeather();
     }
+
     useEffect(function () {
         updateWebSocket.addEventListener("info.weather", wsListener);
         return () =>
             updateWebSocket.removeEventListener("info.weather", wsListener);
     });
+
     useEffect(function () {
         updateWeather();
     }, []);
+
     useLayoutEffect(function () {
         var time_int = setInterval(function () {
             var dt = datetimeExpanded(new Date(Date.now()));
