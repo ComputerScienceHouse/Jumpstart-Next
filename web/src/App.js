@@ -3,20 +3,30 @@ import "./App.scss";
 import "./weather-icons.min.css";
 import PanelInfo from "./components/info.js";
 import FoodInfo from "./components/food.js";
-import { updateWebSocket } from './util';
+import PanelDataDog from "./components/datadog.js";
+import PanelCalendar from "./components/calendar.js";
+import PanelAnnouncements from "./components/announcements";
+import PanelLogo from "./components/logo";
+import BinaryBackground from "./components/binary";
+import { updateWebSocket } from "./util";
+
 
 function App() {
     useEffect(function () {
-      return () => updateWebSocket.close();
+        return () => updateWebSocket.close();
     });
-    return <div className="app">
-      <div className="panel ticker shadow" style={{gridArea: 'ticker'}}> </div>
-      <PanelInfo />
-      <div className="panel announcements shadow" style={{gridArea: 'announcements'}}> </div>
-      <div className="panel calendar shadow" style={{gridArea: 'calendar'}}> </div>
-      <div className="panel datadog shadow" style={{gridArea: 'datadog'}}> </div>
-      <FoodInfo />
-    </div>;
+
+    return (
+        <div className="app-root">
+            <PanelLogo />
+            <PanelInfo />
+            <PanelAnnouncements />
+            <PanelCalendar />
+            <PanelDataDog />
+            <FoodInfo />
+            <BinaryBackground />
+        </div>
+    );
 }
 
 export default App;

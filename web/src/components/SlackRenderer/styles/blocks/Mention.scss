@@ -1,0 +1,11 @@
+.mention {
+  color: #1d9bd1;
+  background: #1d9bd11a;
+  padding: 0 2px 1px;
+  border-radius: 3px;
+
+  &.highlight {
+    background: #e8912d66;
+    color: #f2c744;
+  }
+}
