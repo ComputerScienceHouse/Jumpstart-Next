@@ -1,0 +1,52 @@
+@import "../_variables";
+
+.panel.food {
+    .food-container {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        color: $white;
+    }
+    .food-box {
+        position: absolute;
+        display: inline-block;
+        height: 86%;
+        width: 94%;
+        top: 6%;
+        left: 3%;
+        border-radius: 10px;
+        background-color: #b0197e;
+        box-sizing: border-box;
+    }
+    .food-box thead {
+        position: sticky;
+        top: 0; /* Don't forget this, required for the stickiness */
+        z-index: 1; // any positive value, layer order is global
+        background-color: #b0197e;
+        transform: translateY(-2px);
+    }
+    .fit {
+        width: 100%;
+        height: 100%;
+    }
+
+    @keyframes slideUpward {
+        0% {
+          transform: translateY(0%);
+        }
+        10% {
+            transform: translateY(0%);
+        }
+        90% {
+            transform: translateY(-65%);
+          }        
+        100% {
+          transform: translateY(-65%);
+        }
+      }
+
+    .vmove {
+        animation: 20s linear 1s infinite slideUpward;
+      }
+
+}

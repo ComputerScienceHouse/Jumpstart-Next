@@ -1,4 +1,3 @@
-from re import M
 from fastapi import FastAPI, requests, WebSocket, WebSocketDisconnect
 from fastapi import APIRouter, Response, Request
 from fastapi.responses import FileResponse
@@ -37,6 +36,10 @@ if __name__ != "__main__":
         update=CONFIG["components"]["info"]["weather"]["update"],
     )
 
+    component_DiningDensityFoodWrapper = OpenFoodWrapper(
+        update=CONFIG['components']['dining_density']['update']
+    )
+
     # Start component threads
 
     component_calendarEventWrapper = CalendarWrapper()
@@ -44,6 +47,9 @@ if __name__ != "__main__":
     # Start component threads
     component_infoWeatherWrapper.start()
     component_calendarEventWrapper.start()
+
+    component_DiningDensityFoodWrapper.start()
+
 
 app = FastAPI()
 r = APIRouter(prefix="/api")
@@ -77,8 +83,7 @@ async def event_socket(ws: WebSocket):
     except WebSocketDisconnect:
         await ws.close()
         print(ws)
-
-
+        
 def get_theme():
     if THEME_OVERRIDE["reset"] > time.time():
         return THEME_OVERRIDE["value"]
@@ -116,8 +121,10 @@ async def set_theme_override(name: str):
     THEME_OVERRIDE = {"value": name, "reset": time.time() + 30}
     return {}
 
-
 app.include_router(r)
 app.include_router(InfoComponentRouter)
+app.include_router(DiningDensityComponentRouter)
 app.include_router(CalendarComponentRouter)
 app.include_router(AnnouncementComponentRouter)
+
+
